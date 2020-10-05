@@ -44,6 +44,7 @@ trait SystemProcess
     protected function executeProcess(Process $process): void
     {
         if (config('app.debug')) {
+            $this->line('> ' . $process->getCommandLine());
             $process->start();
             foreach ($process as $type => $data) {
                 if ($process::OUT === $type) {

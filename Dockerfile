@@ -17,7 +17,8 @@ RUN apt-get update && \
     dnsmasq kpartx nfs-kernel-server \
     php7.4-fpm php7.4-cli \
     php7.4-sqlite3 \
-    php7.4-redis\
+    php7.4-redis \
+    php7.4-ssh2 \
     php7.4-gd \
     php7.4-curl \
     php7.4-imap \

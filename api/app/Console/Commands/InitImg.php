@@ -333,17 +333,17 @@ class InitImg extends Command
         $process = new Process(['sudo', 'losetup']);
         $process->run();
 
-        $device = null;
+        $devices = collect();
         // go from bottom to top, we need the latest loop device
         foreach (explode("\n", $process->getOutput()) as $line) {
             if (strpos($line, $imagePath) !== false) {
                 $parts = Str::of($line)->replaceMatches('/\s+/', ' ')->explode(' ');
-                $device = str_replace('/dev/', '', $parts[0]);
+                $devices[] = str_replace('/dev/loop', '', $parts[0]);
                 break;
             }
         }
 
-        return $device;
+        return 'loop' . $devices->max();
     }
 
     /**
